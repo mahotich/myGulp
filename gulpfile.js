@@ -77,5 +77,4 @@ exports.styles = styles
 exports.scripts = scripts
 exports.startwatch = startwatch
 
-// Таск, который выполняется по команде gulp
 exports.default = series(clean, html, parallel(styles, scripts), startwatch)
