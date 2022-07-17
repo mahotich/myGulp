@@ -1,0 +1,258 @@
+.stock{
+   background-color: #CED3CA;
+   padding-top: 126px;
+   padding-bottom: 126px;
+
+   &__container{
+      display: flex;
+      background-color: #F7F7F7;
+
+      position: relative;
+
+      &_text{
+         max-width: 406px;
+         width: 100%;
+         height: 406px;
+         display: flex;
+         justify-content: center;
+         flex-direction:column;
+         margin-left: 6%;
+
+         h2 {
+            font-size: 38px;
+            max-width: 208px;
+            width: 100%;
+            margin-bottom: 33px;
+         }
+      }
+         & img {
+            width: 66%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            right: 0;
+            top: 0;
+         }
+      }
+   }
+
+   .button_shop{
+      width: 100px;
+      font-size: 14px;
+      line-height: 128%;
+
+      a{
+         text-decoration: none;
+         color: #1a1a1a;
+      }
+
+      p {
+         cursor: pointer;
+      }
+
+      .underline{
+         margin-bottom: 6px;
+      }
+
+      .underline::after{
+         content: "";
+         display: block;
+         width: 108%;
+         padding-top: 5px;
+         border-bottom: 1px solid #1a1a1a;
+      } 
+   }
+   a:hover{
+      color: #808080;
+      transition: 0.3s;
+   }
+
+.shop{
+      padding: 113px 0px 93px 0px;
+      background-color: #F8F6F2;
+      &-text{
+         margin-bottom: 92px;
+      }
+      h2{
+         text-align: center;
+         max-width: 630px;
+         width: 100%;
+         margin: 0 auto;
+      }
+
+      &__container{
+
+         &_cards{
+            padding: 0;
+            max-width: 522px;
+            width: 100%;
+            margin-bottom: 47px;
+
+            img{
+               width: 100%;
+            }
+            }
+
+            &_bigcard{
+               padding: 0;
+
+               img{
+                  width: 100%;
+               }
+            }
+         }
+      }
+      .btn-shop{
+         margin-top: 7px;
+      }
+
+.gather{
+   &__container{
+      background-color: #FFF;
+
+      &_text{
+         h2{
+            margin-bottom: 21px;
+         }
+      }
+      &_subtext{
+         max-width: 220px;
+         width: 100%; 
+         margin-bottom: 32px;
+         font-size: 15px;
+         line-height: 119%;
+      }
+   }
+}
+
+.design{
+   .container__img_design{
+      padding: 0px 0px 60% 0px;
+   }
+
+   position: relative;
+   &__container{
+      position: absolute;
+      top: 50%;
+      left: 50%; 
+      transform: translate(-50%,-50%);
+      text-align: center;
+   
+      h2{
+         color: #fff;
+         max-width: 782px;
+         width: 100%;
+         text-align: center;
+         font-size: 35px;
+         line-height: 132%;
+      }
+   }
+}
+
+.design__button_shop{
+   margin: 0 auto;
+   width: 100px;
+   font-size: 15px;
+   line-height: 128%;
+
+   a{
+      text-decoration: none;
+      color: #fff;
+   }
+
+   p {
+      cursor: pointer;
+   }
+
+   .design__underline{
+      margin-bottom: 0px;
+   }
+
+   .design__underline::after{
+      content: "";
+      display: block;
+      width: 108%;
+      padding-top: 5px;
+      border-bottom: 1px solid #fff;
+   } 
+}
+a:hover{
+   color: #808080;
+   transition: 0.3s;
+}
+
+.contact{
+   background-color: #CED3CA;
+   padding: 85px 0px 119px 0px;
+
+   &__container{
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      margin: 0 auto;
+      padding: 0px 10px;
+
+      h2{
+         margin-bottom: 19px;
+         font-size: 34px;
+         line-height: 102%;
+         color: #1a1a1a;
+      }
+
+      p{
+         max-width: 365px;
+         margin: 0 auto;
+         margin-bottom: 40px;
+         font-size: 16px;
+         color: #1a1a1a;
+         line-height: 119%;
+      }
+
+      &_form{
+         display: flex;
+
+         input{
+            padding-left: 18px;
+            width: 338px;
+            height: 48px;
+            border: 1px solid #242424;
+         }
+
+         button{
+            width: 66px;
+            height: 48px;
+            font-size: 24px;
+            line-height: 85%;
+            background-color: #FFF;
+            border: 1px solid #242424;
+         }
+      }
+   }
+}
+
+
+@media screen and(max-width:768px) {
+   .stock__container_text{
+      h2{
+      font-size: 28px;
+      }
+   }
+
+   .contact__container{
+      h2{
+         font-size: 28px;
+      }
+   }
+   .design{
+      &__container{
+         width: 100%;
+         max-width: 100%;
+         h2{
+            font-size: 18px;
+         }
+      }
+      &__button_shop{
+         // font-size: 12px;
+      }
+   }
+}
