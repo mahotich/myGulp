@@ -16,7 +16,7 @@ const paths = {
       dest: 'dist/'
    },
    styles: {
-      src: ['src/styles/**/*.sass', 'src/styles/**/*.scss'],
+      src: ['src/styles/**/*.sass', 'src/styles/**/*.scss', 'src/styles/**/*.css'],
       dest: 'dist/css/'
    },
    scripts: {
@@ -31,7 +31,7 @@ const paths = {
 
 function clean() {
    return del(['dist/*', '!dist/img', '!dist/css/normalize.css'])
-}
+
 
 function html() {
    return src(paths.html.src)
@@ -77,6 +77,7 @@ function startwatch() {
       }
    })
    watch(paths.html.dest).on('change', browsersync.reload)
+   watch('src/pages/**/_*.html', html)
    watch(paths.html.src, html)
    watch(paths.styles.src, styles)
    watch(paths.scripts.src, scripts)
@@ -89,5 +90,4 @@ exports.styles = styles
 exports.scripts = scripts
 exports.startwatch = startwatch
 
-// Таск, который выполняется по команде gulp
 exports.default = series(clean, html, parallel(styles, scripts, images), startwatch)
