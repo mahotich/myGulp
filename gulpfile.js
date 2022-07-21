@@ -6,32 +6,32 @@ const concat = require('gulp-concat')
 const autoprefixer = require('gulp-autoprefixer')
 const htmlmin = require('gulp-htmlmin')
 const include = require('gulp-file-include')
-const newer=require('gulp-newer');
+const newer = require('gulp-newer');
 const browsersync = require('browser-sync').create()
 const del = require('del')
 
 const paths = {
    html: {
       src: ['src/*.html', '!src/pages/**/_*.html'],
-      dest: 'dist/'
+      dest: 'assets/dist/'
    },
    styles: {
       src: ['src/styles/**/*.sass', 'src/styles/**/*.scss', 'src/styles/**/*.css'],
-      dest: 'dist/css/'
+      dest: 'assets/dist/css/'
    },
    scripts: {
       src: 'src/js/**/*.js',
-      dest: 'dist/js/'
+      dest: 'assets/dist/js/'
    },
    imgage: {
       src: 'src/img/**/*',
-      dest: 'dist/img/'
+      dest: 'assets/dist/img/'
    }
 }
 
 function clean() {
    return del(['dist/*', '!dist/img', '!dist/css/normalize.css'])
-
+}
 
 function html() {
    return src(paths.html.src)
@@ -73,7 +73,7 @@ function images() {
 function startwatch() {
    browsersync.init({
       server: {
-         baseDir: "./dist"
+         baseDir: "assets/dist"
       }
    })
    watch(paths.html.dest).on('change', browsersync.reload)
@@ -90,4 +90,5 @@ exports.styles = styles
 exports.scripts = scripts
 exports.startwatch = startwatch
 
-exports.default = series(clean, html, parallel(styles, scripts, images), startwatch)
+// Таск, который выполняется по команде gulp
+exports.default = series(clean, html, parallel(styles, scripts,images), startwatch)
