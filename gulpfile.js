@@ -6,6 +6,7 @@ const concat = require('gulp-concat')
 const autoprefixer = require('gulp-autoprefixer')
 const htmlmin = require('gulp-htmlmin')
 const include = require('gulp-file-include')
+const newer=require('gulp-newer');
 const browsersync = require('browser-sync').create()
 const del = require('del')
 
@@ -21,11 +22,15 @@ const paths = {
    scripts: {
       src: 'src/js/**/*.js',
       dest: 'dist/js/'
+   },
+   imgage: {
+      src: 'src/img/**/*',
+      dest: 'dist/img/'
    }
 }
 
 function clean() {
-   return del(['dist/*', '!dist/img'])
+   return del(['dist/*', '!dist/img', '!dist/css/normalize.css'])
 }
 
 function html() {
@@ -42,7 +47,7 @@ function styles() {
       .pipe(autoprefixer({
          cascade: false
       }))
-      .pipe(concat('style.css'))
+      .pipe(concat('style.min.css'))
       .pipe(cleanCSS({
          level: 2
       }))
@@ -54,9 +59,15 @@ function styles() {
 function scripts() {
    return src(paths.scripts.src)
       .pipe(uglify())
-      .pipe(concat('index.js'))
+      .pipe(concat('index.min.js'))
       .pipe(dest(paths.scripts.dest))
       .pipe(browsersync.stream())
+}
+
+function images() {
+   return src(paths.imgage.src) 
+      .pipe(newer(paths.imgage.dest))// Берём все изображения из папки источника
+      .pipe(dest(paths.imgage.dest)) // Выгружаем оптимизированные изображения в папку назначения
 }
 
 function startwatch() {
@@ -69,6 +80,7 @@ function startwatch() {
    watch(paths.html.src, html)
    watch(paths.styles.src, styles)
    watch(paths.scripts.src, scripts)
+   watch(paths.imgage.src,images);
 }
 
 exports.clean = clean
@@ -78,4 +90,4 @@ exports.scripts = scripts
 exports.startwatch = startwatch
 
 // Таск, который выполняется по команде gulp
-exports.default = series(clean, html, parallel(styles, scripts), startwatch)
+exports.default = series(clean, html, parallel(styles, scripts, images), startwatch)
